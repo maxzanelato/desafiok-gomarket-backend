@@ -1,0 +1,469 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Essa documentação descreve como utilizar os endpoints de integração com a API Rest da GoMarket.",
+    "version": "1.0.0",
+    "title": "API Rest da GoMarket",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3333",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operações sobre o usuário."
+    },
+    {
+      "name": "session",
+      "description": "Operações de login."
+    },
+    {
+      "name": "product",
+      "description": "Operações sobre os produtos"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Cria um usuário",
+        "description": "O usuário deverá fornecer os dados para usar o sistema.",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Cria um objeto de usuário",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Successful"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Upload de imagem",
+        "description": "Adiciona ou atualiza o avatar.",
+        "operationId": "uploadAvatarImage",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "avatar",
+            "in": "formData",
+            "description": "Imagem para upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+
+    "/sessions": {
+      "post": {
+        "tags": [
+          "session"
+        ],
+        "summary": "Login do usuário",
+        "description": "Credenciais para obter um JWT token e poder usar o sistema.",
+        "operationId": "createSession",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Cria um objeto de sessão",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Session"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Successful"
+          }
+        }
+      }
+    },
+
+    "/products": {
+      "get": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Busca de produtos",
+        "description": "Recupera todos os produtos cadastrados. Pode-se aplicar um filtro para que possa refinar a busca, mas caso não seja feito, apenas 10 serão carregados por vez.",
+        "operationId": "getProduct",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "take",
+            "in": "query",
+            "description": "Quantidade de itens na página",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Número da página",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "description": "Filtro por nome do produto",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Cadastro de produto.",
+        "description": "Adiciona um novo produto no GoMarket.",
+        "operationId": "addProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto de produto que será adicionado no sistema",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+
+    "/products/{id}": {
+      "put": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Atualização de produto",
+        "description": "Atualiza um produto existente.",
+        "operationId": "updateProduct",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Identificador do produto que será alterado.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto produto que vai ser alterado na GoMarket",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Remoção de produto",
+        "description": "Remove um produto que foi previamente cadastrado.",
+        "operationId": "deleteProduct",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador do produto que será removido",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+
+    "/product/{id}/image": {
+      "patch": {
+        "tags": [
+          "product"
+        ],
+        "summary": "Upload de imagem",
+        "description": "Adiciona ou atualiza a imagem do produto.",
+        "operationId": "uploadProductImage",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identificador do produto para alterar",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "Imagem para upload",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    }
+
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "name",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Gertrudes Graça"
+        },
+        "email": {
+          "type": "string",
+          "example": "gertrudes@graca.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "123123"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Session": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "maxzanelato@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "123123"
+        }
+      },
+      "xml": {
+        "name": "Session"
+      }
+    },
+    "Product": {
+      "type": "object",
+      "required": [
+        "name",
+        "brand",
+        "price"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Arroz"
+        },
+        "brand": {
+          "type": "string",
+          "example": "Ráris"
+        },
+        "price":{
+          "type": "number",
+          "format": "currency",
+          "example": "250.00"
+        }
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
