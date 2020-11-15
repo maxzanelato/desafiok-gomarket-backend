@@ -16,7 +16,7 @@ interface Response {
   token: string;
 }
 
-export default class AuthentiticateUserService {
+export default class UserAuthenticationService {
   public async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(User);
 
