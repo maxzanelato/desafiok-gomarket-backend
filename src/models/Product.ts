@@ -21,6 +21,9 @@ class Product {
   @Column({ name: 'name' })
   name: string;
 
+  @Column({ name: 'image' })
+  image: string;
+
   @Column({ name: 'brand' })
   brand: string;
 
