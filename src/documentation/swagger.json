@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Essa documentação descreve como utilizar os endpoints de integração com a API Rest da GoMarket.",
+    "description": "# Tutorial\n\nEssa documentação descreve como utilizar os endpoints de integração com a API Rest da GoMarket. Para executar as operações basta seguir os passos a seguir:\n\n1. Obter um token através de [/sessions](/swagger/sessions#/session/createSession);\n2. Copiar o token;\n3. Clicar no botão `Authorize` no canto direito para abrir um popup;\n4. No campo `value`, digitar _bearer_, dar espaço e colar o JWT token copiado;\n5. Clicar em `Authorize`;\n6. Pronto! Só utilizar os serviços.\n",
     "version": "1.0.0",
     "title": "API Rest da GoMarket",
     "contact": {
-      "email": "apiteam@swagger.io"
+      "email": "maxzanelato@gmail.com"
     },
     "license": {
       "name": "Apache 2.0",
@@ -55,8 +55,23 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "Successful"
+          "200": {
+            "description": "Cadastrado com sucesso",
+            "schema":{
+              "$ref": "#/definitions/ApiUserResponse"
+            }
+          },
+          "400": {
+            "description": "E-mail já em uso",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           }
         }
       },
@@ -84,18 +99,27 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Avatar atualizado",
+            "schema":{
+              "$ref": "#/definitions/ApiUserResponse"
+            }
+          },
+          "401": {
+            "description": "Somente usuários autenticados poderão trocar avatar",
             "schema": {
-              "$ref": "#/definitions/ApiResponse"
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearerAuth": []
           }
         ]
       }
@@ -124,8 +148,23 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "Successful"
+          "200": {
+            "description": "Autenticação realizada",
+            "schema":{
+              "$ref": "#/definitions/ApiSessionResponse"
+            }
+          },
+          "401": {
+            "description": "Combinação de e-mail e password incorreta",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           }
         }
       }
@@ -167,19 +206,27 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Produtos recuperados",
+            "schema":{
+              "$ref": "#/definitions/ApiProductsResponse"
+            }
+          },
+          "400": {
+            "description": "Problema ao recuperar os produtos",
             "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "integer",
-                "format": "int32"
-              }
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         },
         "security": [
           {
-            "api_key": []
+            "bearerAuth": []
           }
         ]
       },
@@ -208,16 +255,28 @@
           }
         ],
         "responses": {
-          "405": {
-            "description": "Invalid input"
+          "200": {
+            "description": "Produto criado",
+            "schema":{
+              "$ref": "#/definitions/ApiProductResponse"
+            }
+          },
+          "400": {
+            "description": "Problema ao salvar",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           }
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearerAuth": []
           }
         ]
       }
@@ -256,22 +315,28 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Produto atualizado",
+            "schema":{
+              "$ref": "#/definitions/ApiProductResponse"
+            }
+          },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Produto não encontrado",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           },
-          "404": {
-            "description": "Pet not found"
-          },
-          "405": {
-            "description": "Validation exception"
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           }
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearerAuth": []
           }
         ]
       },
@@ -295,19 +360,25 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
+          "201": {
+            "description": "Produto removido"
           },
-          "404": {
-            "description": "Pet not found"
+          "400": {
+            "description": "Produto não encontrado",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
           }
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearerAuth": []
           }
         ]
       }
@@ -345,18 +416,27 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Imagem do produto atualizada",
+            "schema":{
+              "$ref": "#/definitions/ApiProductResponse"
+            }
+          },
+          "400": {
+            "description": "Produto não encontrado",
             "schema": {
-              "$ref": "#/definitions/ApiResponse"
+                "$ref": "#/definitions/ApiErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "schema": {
+                "$ref": "#/definitions/ApiErrorResponse"
             }
           }
         },
         "security": [
           {
-            "petstore_auth": [
-              "write:pets",
-              "read:pets"
-            ]
+            "bearerAuth": []
           }
         ]
       }
@@ -364,14 +444,12 @@
 
   },
   "securityDefinitions": {
-    "petstore_auth": {
-      "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
-      "flow": "implicit",
-      "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
-      }
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "scheme": "bearer",
+      "in": "header",
+      "description": "Autorização para poder utilizar os serviços. Exemplo \"bearer {token}\""
     }
   },
   "definitions": {
@@ -395,9 +473,6 @@
           "type": "string",
           "example": "123123"
         }
-      },
-      "xml": {
-        "name": "User"
       }
     },
     "Session": {
@@ -415,9 +490,6 @@
           "type": "string",
           "example": "123123"
         }
-      },
-      "xml": {
-        "name": "Session"
       }
     },
     "Product": {
@@ -441,29 +513,94 @@
           "format": "currency",
           "example": "250.00"
         }
-      },
-      "xml": {
-        "name": "Pet"
       }
     },
-    "ApiResponse": {
+    "ApiUserResponse": {
       "type": "object",
       "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
+        "id": {
           "type": "string"
         },
-        "message": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiSessionResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/ApiUserResponse"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiProductResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "aeba25ee-c791-4d5d-bead-af0318c3823d"
+        },
+        "providerId": {
+          "type": "string",
+          "example": "aeba25ee-c791-4d5d-bead-af0318c3823d"
+        },
+        "name": {
+          "type": "string",
+          "example": "Arroz"
+        },
+        "brand": {
+          "type": "string",
+          "example": "Ráris"
+        },
+        "price":{
+          "type": "number",
+          "format": "currency",
+          "example": "250.00"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date",
+          "example": "2020-11-15T05:53:09.916Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date",
+          "example": "2020-11-15T05:53:09.916Z"
+        }
+      }
+    },
+    "ApiProductsResponse": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ApiProductResponse"
+      }
+    },
+    "ApiErrorResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "error": {
           "type": "string"
         }
       }
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
   }
 }

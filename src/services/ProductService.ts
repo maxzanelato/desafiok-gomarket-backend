@@ -84,7 +84,11 @@ export default class ProductService {
       price,
     });
 
-    await productsRepository.save(product);
+    try {
+      await productsRepository.save(product);
+    } catch (e) {
+      throw new AppError('Problem saving the product.');
+    }
 
     return product;
   }
