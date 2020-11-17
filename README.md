@@ -4,8 +4,7 @@
 
 Tabela de conteúdos:
 
-   * [Tech](#Tech)
-   * [Tabela de Conteudo](#tabela-de-conteudo)
+   * [Descrição do Projeto](#product-desc)
    * [Instalação](#instalacao)
    * [Como usar](#como-usar)
       * [Pre Requisitos](#pre-requisitos)
@@ -13,11 +12,10 @@ Tabela de conteúdos:
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
       * [Combo](#combo)
-   * [Tests](#testes)
    * [Tecnologias](#tecnologias)
 
 
-## Descrição do Projeto
+## [Descrição do Projeto](#product-desc)
 GoMarket é um mercado que oferece as opções de cadastro, edição, pesquisa, lista e remoção de produtos. Conta ainda com uma tela de login onde pessoas registradas poderão realizar as operações.
 
   - CRUD de produtos
