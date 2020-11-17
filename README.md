@@ -26,8 +26,6 @@ GoMarket é um mercado que oferece as opções de cadastro, edição, pesquisa, 
 
 GoMarket requer requer NodeJS para executar e yarn para as dependências.
 
-Install the dependencies and devDependencies and start the server.
-
 ```sh
 $ cd desafiok-gomarket-backend
 $ yarn 
@@ -83,6 +81,14 @@ As seguintes tecnologias foram utilizadas:
 | swagger-ui-express | Documentação via swagger |
 | typeorm | Gerenciador de entidades e migrations escrito em TypeScript |
 | uuidv4 | Gerador de id |
+| typescript | Superset da linguagem JavaScript |
+| ts-node-dev | Servidor de desenvolvimento |
+| prettier | Formatador de código |
+| eslint-plugin-import | Plugin de eslint para import |
+| eslint-plugin-prettier | Plugin eslint para prettier |
+| eslint-import-resolver-typescript | Resolver de arquivos typescript |
+| eslint-config-airbnb-base | Base de configurações de padrão de código do airbnb  |
+| eslint | Formatador de código  |
 
 
 
