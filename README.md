@@ -1,35 +1,34 @@
-# Dillinger
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+# GoMarket
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor.
+Tabela de conteúdos:
 
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
+   * [Sobre](#Sobre)
+   * [Tabela de Conteudo](#tabela-de-conteudo)
+   * [Instalação](#instalacao)
+   * [Como usar](#como-usar)
+      * [Pre Requisitos](#pre-requisitos)
+      * [Local files](#local-files)
+      * [Remote files](#remote-files)
+      * [Multiple files](#multiple-files)
+      * [Combo](#combo)
+   * [Tests](#testes)
+   * [Tecnologias](#tecnologias)
 
-# New Features!
 
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
+## Descrição do Projeto
+GoMarket é um mercado que oferece as opções de cadastro, edição, pesquisa, lista e remoção de produtos. Conta ainda com uma tela de login onde pessoas registradas poderão realizar as operações.
+
+  - CRUD de produtos
+  - Pesquisa de produtos
+  - Login
+  - Registro de usuário
+
+ O front-end para se conectar a essa API Rest está presente em [Front-end][df1]
 
 
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
-  - Drag and drop markdown and HTML files into Dillinger
-  - Export documents as Markdown, HTML and PDF
 
-Markdown is a lightweight markup language based on the formatting conventions that people naturally use in email.  As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
 
 This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
 
@@ -159,10 +158,7 @@ MIT
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
 
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
+   [df1]: <https://github.com/maxzanelato/-desafiok-gomarket-frontend>
    [markdown-it]: <https://github.com/markdown-it/markdown-it>
    [Ace Editor]: <http://ace.ajax.org>
    [node.js]: <http://nodejs.org>
