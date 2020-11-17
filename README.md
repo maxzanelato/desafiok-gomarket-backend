@@ -64,6 +64,8 @@ $ yarn dev:server
 
 ```Caso queira fazer testes com API, há um cliente de API Rest Insomnia que poderá ser importado  e utilizado para fazer requisições. ```: [API Insomnia](https://github.com/maxzanelato/desafiok-gomarket-backend/tree/master/insomnia)
 
+Após a aplicação estiver executando, uma documentação via Swagger estará disponível. Ela poderá ser acessada a partir do [link](http://localhost:3333/swagger/).
+
 ## Tecnologias
 As seguintes tecnologias foram utilizadas:
 
