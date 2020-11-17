@@ -4,7 +4,7 @@
 
 Tabela de conteúdos:
 
-   * [Descrição do Projeto](#product-desc)
+   * [Descrição do Projeto](#descrição-do-projeto)
    * [Instalação](#instalacao)
    * [Como usar](#como-usar)
       * [Pre Requisitos](#pre-requisitos)
@@ -15,7 +15,7 @@ Tabela de conteúdos:
    * [Tecnologias](#tecnologias)
 
 
-## [Descrição do Projeto](#product-desc)
+## Descrição do projeto
 GoMarket é um mercado que oferece as opções de cadastro, edição, pesquisa, lista e remoção de produtos. Conta ainda com uma tela de login onde pessoas registradas poderão realizar as operações.
 
   - CRUD de produtos
