@@ -91,7 +91,7 @@ productsRouter.delete('/:id', async (request, response) => {
   return response.status(204).send();
 });
 
-productsRouter.patch(
+productsRouter.post(
   '/:id/image',
   upload.single('image'),
   async (request, response) => {
