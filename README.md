@@ -4,7 +4,7 @@
 
 Tabela de conteúdos:
 
-   * [Tech](#Sobre)
+   * [Tech](#Tech)
    * [Tabela de Conteudo](#tabela-de-conteudo)
    * [Instalação](#instalacao)
    * [Como usar](#como-usar)
