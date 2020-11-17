@@ -4,7 +4,7 @@
   "port": "5432",
   "username": "postgres",
   "password": "postgres",
-  "database": "gomarketdb",
+  "database": "gomarketdb1",
   "entities": [
     "./src/models/*.ts"
   ],
