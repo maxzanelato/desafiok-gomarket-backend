@@ -22,6 +22,16 @@ productsRouter.get('/', async (request, response) => {
   return response.json(products);
 });
 
+productsRouter.get('/:id', async (request, response) => {
+  const { id } = request.params;
+
+  const productService = new ProductService();
+
+  const products = await productService.findById(id);
+
+  return response.json(products);
+});
+
 productsRouter.get('/own', async (request, response) => {
   const productService = new ProductService();
 

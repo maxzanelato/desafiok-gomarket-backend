@@ -14,7 +14,7 @@ export default class AppointmentsRepository extends Repository<Product> {
     providerId: string,
     query: Pagination,
   ): Promise<Product[]> {
-    const take = query.take || 10;
+    const take = query.take || 8;
     const skip = query.skip || 0;
     const keyword = query.keyword || '';
 

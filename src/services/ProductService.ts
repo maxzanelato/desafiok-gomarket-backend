@@ -27,7 +27,7 @@ export default class ProductService {
   public async find(pagination: Pagination): Promise<Array<Product>> {
     const productsRepository = getRepository(Product);
 
-    const take = pagination.take || 10;
+    const take = pagination.take || 8;
     const skip = pagination.skip || 0;
     const keyword = pagination.keyword || '';
 
